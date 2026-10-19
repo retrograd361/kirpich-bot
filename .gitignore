@@ -1,0 +1,8 @@
+.env
+__pycache__/
+*.pyc
+netlify/
+public/
+netlify.toml
+runtime.txt
+set_webhook.py
