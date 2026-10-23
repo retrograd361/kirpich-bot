@@ -2,10 +2,10 @@ import asyncio
 import logging
 import os
 
-from aiogram import Bot, Dispatcher
+from aiogram import Bot, Dispatcher, F
 from aiogram.client.default import DefaultBotProperties
 from aiogram.filters import CommandStart
-from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, ChatJoinRequest
 from dotenv import load_dotenv
 
 # Завантажуємо змінні з .env файлу
@@ -71,9 +71,48 @@ async def handle_start(message: Message) -> None:
     )
 
 
+@dp.chat_join_request()
+async def handle_join_request(request: ChatJoinRequest) -> None:
+    """Автоматично приймає заявки в канал через 10 секунд і надсилає повідомлення."""
+    user = request.from_user
+    logger.info(f"Заявка від: @{user.username} (id={user.id}) в чат {request.chat.id}")
+
+    # Чекаємо 10 секунд
+    await asyncio.sleep(10)
+
+    # Приймаємо заявку
+    await bot.approve_chat_join_request(
+        chat_id=request.chat.id,
+        user_id=user.id
+    )
+    logger.info(f"Заявку прийнято: @{user.username} (id={user.id})")
+
+    # Надсилаємо повідомлення в приват з кнопками соцмереж
+    keyboard = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text="📸 Instagram", url=INSTAGRAM_URL),
+                InlineKeyboardButton(text="🎵 TikTok", url=TIKTOK_URL),
+            ],
+        ]
+    )
+    try:
+        await bot.send_message(
+            chat_id=user.id,
+            text=(
+                "Привіт! Твою заявку в канал схвалено 🔥\n\n"
+                "Також не забудь залетіти в наш Instagram і TikTok!"
+            ),
+            reply_markup=keyboard
+        )
+    except Exception as e:
+        # Якщо юзер не запускав бота раніше — повідомлення не надішлеться, це нормально
+        logger.warning(f"Не вдалось надіслати повідомлення @{user.username}: {e}")
+
+
 async def main() -> None:
     logger.info("Бот запускається...")
-    await dp.start_polling(bot)
+    await dp.start_polling(bot, allowed_updates=dp.resolve_used_update_types())
 
 
 if __name__ == "__main__":
