@@ -55,7 +55,7 @@ def get_socials_keyboard() -> InlineKeyboardMarkup:
             ],
             [
                 InlineKeyboardButton(
-                    text="💸 Підтримати (Donatello)",
+                    text="💸 Підтримати донатом",
                     url=DONATELLO_URL
                 ),
             ],
