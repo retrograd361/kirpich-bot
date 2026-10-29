@@ -24,11 +24,14 @@ INSTAGRAM_URL = os.getenv("INSTAGRAM_URL")
 TIKTOK_URL = os.getenv("TIKTOK_URL")
 TELEGRAM_CHANNEL_URL = os.getenv("TELEGRAM_CHANNEL_URL")
 DONATELLO_URL = os.getenv("DONATELLO_URL")
+MONOBANK_URL = os.getenv("MONOBANK_URL")
 
 # Текст привітання
 WELCOME_TEXT = (
     "👋 Всім привіт, на зв'язку <b>Кірпіч</b>!\n\n"
     "Приєднуйтесь до моїх соцмереж — там буде 🔥 двіж!\n\n"
+    "💳 Підтримати донатом на карту можна сюди:\n"
+    "<code>4874 1000 3461 1692</code>\n\n"
     "⬇️ Обирай де зустрінемось:"
 )
 
@@ -55,8 +58,14 @@ def get_socials_keyboard() -> InlineKeyboardMarkup:
             ],
             [
                 InlineKeyboardButton(
-                    text="💸 Підтримати донатом",
+                    text="💸 Підтримати донатом (Donatello)",
                     url=DONATELLO_URL
+                ),
+            ],
+            [
+                InlineKeyboardButton(
+                    text="🏦 Підтримати донатом (Монобанка)",
+                    url=MONOBANK_URL
                 ),
             ],
         ]
