@@ -23,6 +23,7 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 INSTAGRAM_URL = os.getenv("INSTAGRAM_URL")
 TIKTOK_URL = os.getenv("TIKTOK_URL")
 TELEGRAM_CHANNEL_URL = os.getenv("TELEGRAM_CHANNEL_URL")
+DONATELLO_URL = os.getenv("DONATELLO_URL")
 
 # Текст привітання
 WELCOME_TEXT = (
@@ -50,6 +51,12 @@ def get_socials_keyboard() -> InlineKeyboardMarkup:
                 InlineKeyboardButton(
                     text="✈️ Telegram канал",
                     url=TELEGRAM_CHANNEL_URL
+                ),
+            ],
+            [
+                InlineKeyboardButton(
+                    text="💸 Підтримати (Donatello)",
+                    url=DONATELLO_URL
                 ),
             ],
         ]
