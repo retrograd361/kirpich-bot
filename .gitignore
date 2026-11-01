@@ -1,8 +1,6 @@
 .env
+.venv/
 __pycache__/
 *.pyc
-netlify/
-public/
-netlify.toml
-runtime.txt
-set_webhook.py
+*.db
+*.sqlite3
