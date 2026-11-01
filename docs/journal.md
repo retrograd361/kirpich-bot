@@ -17,3 +17,7 @@
   Сервіс kind-education лишився (без активного деплою), але все ще підключений до GitHub
   з автодеплоєм — наступний push у main знову його запустить.
 - gh залогінений як voicemakerbot-sketch: до retrograd361/kirpich-bot є лише read, push немає.
+- Користувач отримав write-доступ до retrograd361/kirpich-bot (акаунт voicemakerbot-sketch).
+  Локальне репо підвʼязане до origin; новий бот закомічений у `feature/async-bot` ПОВЕРХ історії
+  старого бота (стара локальна гілка перейменована в `draft/async-bot`). Нічого не запушено.
+  План деплою — docs/deploy-plan-2026-11-01.md.
