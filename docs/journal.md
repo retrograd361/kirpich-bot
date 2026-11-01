@@ -21,3 +21,7 @@
   Локальне репо підвʼязане до origin; новий бот закомічений у `feature/async-bot` ПОВЕРХ історії
   старого бота (стара локальна гілка перейменована в `draft/async-bot`). Нічого не запушено.
   План деплою — docs/deploy-plan-2026-11-01.md.
+- Тест на @vasyl_my_bot: 21 апдейт, без помилок. Користувач сам додав у discerning-sparkle
+  Postgres (з volume) і змінні DATABASE_URL (посилання на Postgres) та ADMIN_USERNAMES (3 адміни).
+- `feature/async-bot` запушено на GitHub (з дозволу). У main ще НЕ змерджено.
+- kind-education: вимкнено автодеплой з GitHub (Auto deploy is disabled), щоб merge у main не оживив дубль.
